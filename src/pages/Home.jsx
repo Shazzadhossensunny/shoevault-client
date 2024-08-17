@@ -33,7 +33,7 @@ export default function Home() {
   };
 
   return (
-    <div className="container mx-auto py-16">
+    <div className="container mx-auto py-16 px-2">
       <h2 className="text-3xl text-center font-semibold">Products</h2>
       {/* search */}
       <div className="join flex justify-center my-3">
@@ -113,7 +113,7 @@ export default function Home() {
         ))}
       </div>
       {/* pagination */}
-      <div className="flex justify-center items-center mt-6 space-x-2">
+      <div className="flex justify-center items-center mt-6 space-x-2 flex-wrap space-y-2">
         <button
           onClick={() => setPage(page - 1)}
           disabled={page === 1}
