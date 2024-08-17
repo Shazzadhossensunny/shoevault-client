@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContextComponents";
+import { toast } from "react-toastify";
 
 export default function Navbar() {
+
+  const {user, logOut, loading} = useContext(AuthContext)
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success("Sign Out");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  if (loading) {
+    return (
+      <div className=" h-screen flex justify-center items-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
+
   return (
    <nav className="bg-slate-400">
     <div className="container mx-auto">
@@ -39,7 +60,15 @@ export default function Navbar() {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to='/login' className="btn text-xl">Login</Link>
+        {
+          user ? (
+            <Link onClick={handleLogOut} className="btn text-xl">LogOut</Link>
+          ) : (
+            <Link to='/login' className="btn text-xl">Login</Link>
+          )
+        }
+
+
       </div>
     </div>
     </div>

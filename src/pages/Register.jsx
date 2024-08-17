@@ -3,6 +3,7 @@ import { useContext, useEffect } from 'react'
 import regBg from '../assets/register.jpg'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContextComponents'
+import { toast } from 'react-toastify'
 
 
 export default function Register() {
@@ -26,6 +27,7 @@ export default function Register() {
       userUpdateProfile(name)
       .then(()=>{
         setUser({...result?.user, displayName: name})
+        toast.success("SuccessFully Registration");
         navigate(from, {replace: true})
       })
 

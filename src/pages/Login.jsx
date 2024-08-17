@@ -1,8 +1,54 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import loginBg from '../assets/login.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../context/AuthContextComponents'
+import { toast } from 'react-toastify'
 
 export default function Login() {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const {user, userLogIn, loading, googleSignIn, setLoading} = useContext(AuthContext)
+  useEffect(()=>{
+    if(user){
+      navigate('/')
+    }
+  },[navigate, user])
+  const from = location.state || '/'
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(email, password)
+    userLogIn(email, password)
+    .then((result)=>{
+      console.log(result.user)
+      toast.success("SuccessFully Login");
+      navigate(from, { replace: true })
+    })
+    .catch((error)=>{
+      console.log(error.message)
+      toast.error("Please Provide Correct email & password")
+      setLoading(false)
+    })
+
+  }
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+    .then((result)=>{
+      console.log(result.user)
+      toast.success("SuccessFully Login");
+      navigate(from, { replace: true })
+    })
+    .catch((error) => {
+      console.log(error.message);
+      setLoading(false);
+    });
+  }
+
+  // if (user || loading) return
   return (
     <div className='flex justify-center items-center my-12'>
   <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
@@ -18,7 +64,7 @@ export default function Login() {
         Welcome back!
       </p>
 
-      <div className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '>
+      <div onClick={handleGoogleSignIn} className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '>
         <div className='px-4 py-2'>
           <svg className='w-6 h-6' viewBox='0 0 40 40'>
             <path
@@ -54,7 +100,7 @@ export default function Login() {
 
         <span className='w-1/5 border-b dark:border-gray-400 lg:w-1/4'></span>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className='mt-4'>
           <label
             className='block mb-2 text-sm font-medium text-gray-600 '
