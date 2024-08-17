@@ -16,7 +16,7 @@ export default function Home() {
   useEffect(() => {
     const fetchProducts = async () => {
       const res = await fetch(
-        `http://localhost:5000/products?page=${page}&limit=6&search=${searchQuery}&brand=${brand}&category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}&sortBy=${sortBy}`
+        `https://shoevault-server.vercel.app/products?page=${page}&limit=6&search=${searchQuery}&brand=${brand}&category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}&sortBy=${sortBy}`
       );
       const data = await res.json();
       setProducts(data.products);
@@ -106,11 +106,16 @@ export default function Home() {
         </select>
       </div>
       {/* all products */}
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-6">
-        {products.map((product) => (
-          <Singleproduct key={product._id} product={product}></Singleproduct>
-        ))}
+      <div className="my-6">
+        {products.length === 0 ? (
+          <p className="text-center text-lg font-semibold">No products found</p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {products.map((product) => (
+              <Singleproduct key={product._id} product={product} />
+            ))}
+          </div>
+        )}
       </div>
       {/* pagination */}
       <div className="flex justify-center items-center mt-6 space-x-2 flex-wrap space-y-2">
