@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../context/AuthContextComponents";
 import { toast } from "react-toastify";
 
@@ -49,14 +49,14 @@ export default function Navbar() {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
-                 <li className="text-2xl font-semibold"><a>Home</a></li>
+              <li className="text-2xl font-semibold"><NavLink to='/home'>Home</NavLink></li>
           </ul>
         </div>
         <Link to='/' className="text-4xl font-bold">ShoeVault</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li className="text-2xl font-semibold"><a>Home</a></li>
+        <li className="text-2xl font-semibold"><NavLink to='/home'>Home</NavLink></li>
         </ul>
       </div>
       <div className="navbar-end">

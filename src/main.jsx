@@ -11,12 +11,17 @@ import Register from './pages/Register';
 import AuthContextComponents from './context/AuthContextComponents';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import Home from './pages/Home';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
     children:[
+      {
+        path: "/home",
+        element: <Home></Home>
+      },
       {
         path: "/login",
         element: <Login></Login>
