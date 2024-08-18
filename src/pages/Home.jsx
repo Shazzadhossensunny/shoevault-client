@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import Singleproduct from "../components/Singleproduct";
+import { AuthContext } from "../context/AuthContextComponents";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -12,6 +13,7 @@ export default function Home() {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [sortBy, setSortBy] = useState("dateAdded");
+  const {loading} = useContext(AuthContext)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -31,6 +33,14 @@ export default function Home() {
     setPage(1);
     setSearchQuery(e.target.search.value.trim());
   };
+
+  if (loading) {
+    return (
+      <div className=" h-screen flex justify-center items-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto py-16 px-2">

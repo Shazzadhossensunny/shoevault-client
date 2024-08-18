@@ -1,8 +1,41 @@
-# React + Vite
+# ShoeVault - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend of the ShoeVault project, a web application for browsing and purchasing shoes. The frontend is built using React.js and Tailwind CSS(DaisyUI).
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/Shazzadhossensunny/shoevault-client.git
+   cd shoevault-frontend
+   ```
+
+2. **Install dependencies:**
+
+   Make sure you have Node.js installed. Then, run:
+
+   ```bash
+   npm install
+   ```
+
+## Running the Project
+
+1. **Start the development server:**
+
+   ```bash
+   npm run dev
+   ```
+
+## Features
+
+- **Product Search**: Search for products by name.
+- **Filtering**: Filter products by brand, category, and price range.
+- **Sorting**: Sort products by price or date added.
+- **Pagination**: Browse products across multiple pages.
+
+## Technologies Used
+
+- **React.js**: Frontend library for building user interfaces.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **Fetch API**: For making HTTP requests to the backend.
